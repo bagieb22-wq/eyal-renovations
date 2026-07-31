@@ -312,7 +312,7 @@
   </style>
 
   <script>
-    // 📸 תמונות הגלריה - תמונות חדשות פשוט מוסיפים בסוף הרשימה הזו!
+    // תמונות בסיס יוקרתיות
     const defaultImages = [
       { url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", title: "שיפוץ ועיצוב וילה יוקרתית" },
       { url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80", title: "גמר פנים וריצוף מודרני" },
@@ -320,22 +320,25 @@
       { url: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80", title: "עבודות גבס ותאורה נסתרת" }
     ];
 
-    function loadGallery() {
+    async function loadGallery() {
       const galleryGrid = document.getElementById('galleryGrid');
       galleryGrid.innerHTML = ''; 
 
-      // 1. הצגת התמונות
+      // 1. טעינת תמונות הבסיס
       defaultImages.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'gallery-card';
-        card.innerHTML = `
-          <img src="${item.url}" alt="${item.title}" loading="lazy">
-          <div class="card-overlay">${item.title}</div>
-        `;
-        galleryGrid.appendChild(card);
+        addCardToGallery(item.url, item.title);
       });
 
-      // 2. תבנית מעוצבת בסוף הגלריה
+      // 2. זיהוי אוטומטי של תמונות שאייל מעלה: 1.jpg, 2.jpg, 3.jpg...
+      for (let i = 1; i <= 20; i++) {
+        const imageName = `${i}.jpg`;
+        const exists = await checkImageExists(imageName);
+        if (exists) {
+          addCardToGallery(imageName, `פרויקט שבוצע על ידי אייל`);
+        }
+      }
+
+      // 3. תבנית מעוצבת בסוף הגלריה
       const placeholderCard = document.createElement('div');
       placeholderCard.className = 'gallery-card placeholder';
       placeholderCard.innerHTML = `
@@ -344,6 +347,27 @@
         <div class="placeholder-subtext">אייל שיפוצים ובנייה</div>
       `;
       galleryGrid.appendChild(placeholderCard);
+    }
+
+    function addCardToGallery(url, title) {
+      const galleryGrid = document.getElementById('galleryGrid');
+      const card = document.createElement('div');
+      card.className = 'gallery-card';
+      card.innerHTML = `
+        <img src="${url}" alt="${title}" loading="lazy">
+        <div class="card-overlay">${title}</div>
+      `;
+      galleryGrid.appendChild(card);
+    }
+
+    // פונקציית בדיקה האם הקובץ קיים ב-GitHub
+    function checkImageExists(url) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+      });
     }
 
     window.addEventListener('DOMContentLoaded', loadGallery);
