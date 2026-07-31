@@ -432,12 +432,11 @@
     }
   </style>
 
-  <!-- Firebase SDK מעודכן עם המפתחות האמיתיים שלך -->
+  <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // המפתחות האמיתיים של הפרויקט שלך
     const firebaseConfig = {
       apiKey: "AIzaSyCznxxrD-Yc_h5zhE6iEFAo1dg2jc3mb00",
       authDomain: "eyal-renovations.firebaseapp.com",
@@ -450,7 +449,7 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // טעינת תגובות בזמן אמת מ-Firestore
+    // טעינת תגובות בזמן אמת
     const reviewsRef = collection(db, "reviews");
     const q = query(reviewsRef, orderBy("timestamp", "desc"));
 
@@ -623,7 +622,7 @@
       <p>מה אומרים הלקוחות על העבודות והשירות שלנו</p>
     </div>
 
-    <!-- כרטיסיות הביקורות שנשלחות בלייב -->
+    <!-- כרטיסיות הביקורות -->
     <div class="reviews-grid" id="reviewsGrid">
       <!-- התגובות ייטענו לכאן אוטומטית מכל הלקוחות -->
     </div>
@@ -642,8 +641,11 @@
         <div class="form-group">
           <label>דירוג</label>
           <select id="reviewerStars" class="form-control" style="color: var(--accent-gold); font-weight: 700;">
-            <option value="★★★★★">★★★★★ (5 כוכבים)</option>
-            <option value="★★★★☆">★★★★☆ (4 כוכבים)</option>
+            <option value="★★★★★">★★★★★ (5 כוכבים - מעולה!)</option>
+            <option value="★★★★☆">★★★★☆ (4 כוכבים - טוב מאוד)</option>
+            <option value="★★★☆☆">★★★☆☆ (3 כוכבים - בינוני)</option>
+            <option value="★★☆☆☆">★★☆☆☆ (2 כוכבים - טעון שיפור)</option>
+            <option value="★☆☆☆☆">★☆☆☆☆ (1 כוכב - לא מרוצה)</option>
           </select>
         </div>
 
