@@ -234,7 +234,6 @@
       transform: scale(1.08);
     }
 
-    /* תבנית מעוצבת בסוף הגלריה */
     .gallery-card.placeholder {
       border: 2px dashed rgba(212, 175, 55, 0.35);
       display: flex;
@@ -244,12 +243,6 @@
       background: rgba(10, 10, 12, 0.6);
       padding: 30px 20px;
       gap: 12px;
-      transition: all 0.3s ease;
-    }
-
-    .gallery-card.placeholder:hover {
-      border-color: var(--accent-gold);
-      background: rgba(212, 175, 55, 0.04);
     }
 
     .placeholder-icon {
@@ -257,36 +250,163 @@
       line-height: 1;
       color: var(--accent-gold);
       font-weight: 300;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-card.placeholder:hover .placeholder-icon {
-      transform: scale(1.15);
     }
 
     .placeholder-text {
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--text-light);
-      letter-spacing: -0.3px;
     }
 
     .placeholder-subtext {
       font-size: 0.85rem;
       color: var(--text-muted);
-      font-weight: 400;
     }
 
     .card-overlay {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       padding: 20px;
       background: linear-gradient(to top, rgba(10, 10, 12, 0.9) 0%, transparent 100%);
       color: var(--text-light);
       font-size: 0.95rem;
       font-weight: 600;
+    }
+
+    /* Reviews Section */
+    .reviews-section {
+      padding: 90px 5%;
+      background: var(--bg-dark);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto 50px auto;
+    }
+
+    .review-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .review-card:hover {
+      border-color: var(--accent-gold);
+    }
+
+    .review-stars {
+      color: var(--accent-gold);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .review-text {
+      color: var(--text-light);
+      font-size: 0.98rem;
+      font-weight: 300;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .review-footer-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .review-author {
+      font-weight: 700;
+      color: var(--accent-gold);
+      font-size: 0.95rem;
+    }
+
+    .review-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Form Container */
+    .review-form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .review-form-container h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--text-light);
+    }
+
+    .review-form-container p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+      text-align: right;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: var(--bg-dark);
+      color: #fff;
+      font-family: var(--font-family);
+      font-size: 0.95rem;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-gold);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--accent-gold), #b89228);
+      color: #000;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-gold:hover {
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
     }
 
     /* Footer */
@@ -308,11 +428,99 @@
       .hero p { font-size: 1.05rem; }
       .btn { width: 100%; }
       .gallery-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
     }
   </style>
 
+  <!-- Firebase SDK מעודכן עם המפתחות האמיתיים שלך -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // המפתחות האמיתיים של הפרויקט שלך
+    const firebaseConfig = {
+      apiKey: "AIzaSyCznxxrD-Yc_h5zhE6iEFAo1dg2jc3mb00",
+      authDomain: "eyal-renovations.firebaseapp.com",
+      projectId: "eyal-renovations",
+      storageBucket: "eyal-renovations.firebasestorage.app",
+      messagingSenderId: "869611214788",
+      appId: "1:869611214788:web:84e76843ad2ea2ef80b691"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // טעינת תגובות בזמן אמת מ-Firestore
+    const reviewsRef = collection(db, "reviews");
+    const q = query(reviewsRef, orderBy("timestamp", "desc"));
+
+    onSnapshot(q, (snapshot) => {
+      const reviewsGrid = document.getElementById('reviewsGrid');
+      reviewsGrid.innerHTML = '';
+
+      if (snapshot.empty) {
+        reviewsGrid.innerHTML = '<p style="text-align:center; color: var(--text-muted); grid-column: 1/-1;">עדיין אין תגובות. היו הראשונים להגיב!</p>';
+        return;
+      }
+
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML = `
+          <div>
+            <div class="review-stars">${data.stars || '★★★★★'}</div>
+            <div class="review-text">"${data.text}"</div>
+          </div>
+          <div class="review-footer-info">
+            <span class="review-author">${data.author}</span>
+            <span class="review-date">${data.dateStr || ''}</span>
+          </div>
+        `;
+        reviewsGrid.appendChild(card);
+      });
+    }, (error) => {
+      console.warn("Firestore error:", error);
+    });
+
+    // שליחת תגובה חדשה לענן
+    window.submitPublicReview = async function(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('submitBtn');
+      const name = document.getElementById('reviewerName').value;
+      const stars = document.getElementById('reviewerStars').value;
+      const text = document.getElementById('reviewerText').value;
+
+      submitBtn.innerText = 'מפרסם תגובה...';
+      submitBtn.disabled = true;
+
+      try {
+        const today = new Date();
+        const dateStr = today.toLocaleDateString('he-IL');
+
+        await addDoc(collection(db, "reviews"), {
+          author: name,
+          stars: stars,
+          text: text,
+          dateStr: dateStr,
+          timestamp: serverTimestamp()
+        });
+
+        document.getElementById('reviewerName').value = '';
+        document.getElementById('reviewerText').value = '';
+        submitBtn.innerText = 'פרסום תגובה באתר';
+        submitBtn.disabled = false;
+        alert('התגובה שלך פורסמה בהצלחה ומופיעה עכשיו לכולם!');
+      } catch (err) {
+        console.error("Error adding review:", err);
+        submitBtn.innerText = 'פרסום תגובה באתר';
+        submitBtn.disabled = false;
+        alert('שגיאה בפרסום התגובה, אנא נסה שנית.');
+      }
+    };
+  </script>
+
   <script>
-    // תמונות בסיס יוקרתיות
     const defaultImages = [
       { url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", title: "שיפוץ ועיצוב וילה יוקרתית" },
       { url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80", title: "גמר פנים וריצוף מודרני" },
@@ -324,12 +532,10 @@
       const galleryGrid = document.getElementById('galleryGrid');
       galleryGrid.innerHTML = ''; 
 
-      // 1. טעינת תמונות הבסיס
       defaultImages.forEach(item => {
         addCardToGallery(item.url, item.title);
       });
 
-      // 2. זיהוי אוטומטי של תמונות שאייל מעלה: 1.jpg, 2.jpg, 3.jpg...
       for (let i = 1; i <= 20; i++) {
         const imageName = `${i}.jpg`;
         const exists = await checkImageExists(imageName);
@@ -338,7 +544,6 @@
         }
       }
 
-      // 3. תבנית מעוצבת בסוף הגלריה
       const placeholderCard = document.createElement('div');
       placeholderCard.className = 'gallery-card placeholder';
       placeholderCard.innerHTML = `
@@ -360,7 +565,6 @@
       galleryGrid.appendChild(card);
     }
 
-    // פונקציית בדיקה האם הקובץ קיים ב-GitHub
     function checkImageExists(url) {
       return new Promise((resolve) => {
         const img = new Image();
@@ -409,6 +613,49 @@
 
     <div class="gallery-grid" id="galleryGrid">
       <!-- התמונות ייטענו לכאן -->
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="reviews-section">
+    <div class="section-header">
+      <h2>חוות דעת וביקורות</h2>
+      <p>מה אומרים הלקוחות על העבודות והשירות שלנו</p>
+    </div>
+
+    <!-- כרטיסיות הביקורות שנשלחות בלייב -->
+    <div class="reviews-grid" id="reviewsGrid">
+      <!-- התגובות ייטענו לכאן אוטומטית מכל הלקוחות -->
+    </div>
+
+    <!-- טופס הוספת תגובה ישירות באתר -->
+    <div class="review-form-container">
+      <h3>השארת חוות דעת</h3>
+      <p>נשמח לשמוע את חוות דעתך ולהציג אותה באתר שלנו לכל המבקרים!</p>
+      
+      <form onsubmit="submitPublicReview(event)">
+        <div class="form-group">
+          <label>שם מלא / עיר</label>
+          <input type="text" id="reviewerName" class="form-control" placeholder="למשל: ישראל ישראלי" required>
+        </div>
+
+        <div class="form-group">
+          <label>דירוג</label>
+          <select id="reviewerStars" class="form-control" style="color: var(--accent-gold); font-weight: 700;">
+            <option value="★★★★★">★★★★★ (5 כוכבים)</option>
+            <option value="★★★★☆">★★★★☆ (4 כוכבים)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>התגובה שלך</label>
+          <textarea id="reviewerText" class="form-control" placeholder="כיתבו כאן משהו על העבודה והשירות..." required></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-gold">
+          פרסום תגובה באתר
+        </button>
+      </form>
     </div>
   </section>
 
