@@ -3,12 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>אייל - עבודות שיפוצים, בנייה וניהול פרויקטים | יוקרה ואיכות</title>
-  <meta name="description" content="אייל מספק שירותי שיפוצים מקיפים, עבודות שלד יוקרתיות וניהול פרויקטים ברמה הגבוהה ביותר.">
-  <meta name="keywords" content="שיפוצי יוקרה, בנייה, ניהול פרויקטים, עבודות שלד, קבלן שיפוצים, אייל שיפוצים">
+  <title>אייל שיפוצים ובנייה | עבודות גמר, יוקרה ועיצוב פנים</title>
 
-  <!-- Google Fonts - Heebo -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -18,653 +14,217 @@
       --bg-dark: #0a0a0c;
       --card-bg: #121216;
       --accent-gold: #d4af37;
-      --accent-orange: #e67e22;
       --accent-green: #25d366;
       --text-light: #f8fafc;
       --text-muted: #94a3b8;
-      --border-color: rgba(212, 175, 55, 0.2);
+      --border-color: rgba(212, 175, 55, 0.25);
       --font-family: 'Heebo', sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: var(--font-family);
       background-color: var(--bg-dark);
       color: var(--text-light);
       line-height: 1.6;
-      overflow-x: hidden;
+      padding-bottom: 50px;
     }
 
-    /* Header */
     header {
-      padding: 18px 5%;
+      padding: 20px 5%;
       background: rgba(10, 10, 12, 0.85);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
+      position: sticky;
+      top: 0; z-index: 1000;
       border-bottom: 1px solid var(--border-color);
     }
 
-    .brand-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-logo-img {
-      height: 45px;
-      object-fit: contain;
-    }
-
-    .brand-text-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .logo {
+      font-size: 1.5rem;
       font-weight: 900;
-      font-size: 1.3rem;
-      letter-spacing: -0.5px;
-      color: var(--text-light);
-    }
-
-    .brand-badge {
-      background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
-      color: #000;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 800;
-    }
-
-    .nav-btn-call {
-      background: transparent;
       color: var(--accent-gold);
-      border: 1px solid var(--accent-gold);
-      padding: 8px 22px;
-      border-radius: 30px;
+      letter-spacing: 1px;
+    }
+
+    .btn-whatsapp-nav {
+      background: linear-gradient(135deg, var(--accent-green), #1ebd56);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 25px;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-    }
-
-    .nav-btn-call:hover {
-      background: var(--accent-gold);
-      color: #000;
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 180px 20px 100px 20px;
-      text-align: center;
-      position: relative;
-      background: radial-gradient(circle at top, rgba(212, 175, 55, 0.08) 0%, rgba(10, 10, 12, 1) 70%);
-    }
-
-    .hero-subtitle {
-      color: var(--accent-gold);
-      font-size: 0.95rem;
       font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .btn-whatsapp-nav:hover { transform: scale(1.03); }
+
+    .hero {
+      text-align: center;
+      padding: 80px 5% 60px 5%;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .hero h1 {
-      font-size: 3.8rem;
+      font-size: 3.2rem;
       font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 24px;
-      letter-spacing: -1px;
-    }
-
-    .hero h1 span {
+      line-height: 1.2;
+      margin-bottom: 20px;
       background: linear-gradient(135deg, #ffffff 30%, var(--accent-gold) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: var(--text-muted);
-      max-width: 680px;
-      margin: 0 auto 40px auto;
+      margin-bottom: 35px;
       font-weight: 300;
     }
 
-    .btn-group {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 16px 36px;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.05rem;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .btn-whatsapp {
-      background: linear-gradient(135deg, var(--accent-green), #1ebd56);
-      color: #fff;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
-    }
-
-    .btn-whatsapp:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-    }
-
-    /* Gallery Section */
-    .gallery-section {
-      padding: 90px 5%;
-      background: var(--card-bg);
-      border-top: 1px solid var(--border-color);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .section-header h2 {
-      font-size: 2.8rem;
-      font-weight: 900;
-      letter-spacing: -1px;
-    }
-
-    .section-header p {
-      color: var(--accent-gold);
-      font-weight: 400;
-      font-size: 1.1rem;
-      margin-top: 8px;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
-      max-width: 1300px;
+    .services-section {
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 5%;
     }
 
-    .gallery-card {
-      position: relative;
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 40px;
+      color: var(--text-light);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-bottom: 70px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
       border-radius: 16px;
-      overflow: hidden;
-      background: var(--bg-dark);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      height: 380px; /* הגדלנו מ-280px ל-380px לתמונות גדולות ומרשימות יותר */
-      transition: all 0.4s ease;
-    }
-
-    .gallery-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
-    .gallery-card:hover {
-      border-color: var(--accent-gold);
-      transform: translateY(-6px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-    }
-
-    .gallery-card:hover img {
-      transform: scale(1.08);
-    }
-
-    .gallery-card.placeholder {
-      border: 2px dashed rgba(212, 175, 55, 0.35);
+      padding: 30px 20px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text-light);
+      transition: all 0.3s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      background: rgba(10, 10, 12, 0.6);
-      padding: 30px 20px;
-      gap: 12px;
     }
 
-    .placeholder-icon {
-      font-size: 2.8rem;
-      line-height: 1;
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent-gold);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .service-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
       color: var(--accent-gold);
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
       font-weight: 300;
     }
 
-    .placeholder-text {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-light);
-    }
-
-    .placeholder-subtext {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .card-overlay {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 20px;
-      background: linear-gradient(to top, rgba(10, 10, 12, 0.9) 0%, transparent 100%);
-      color: var(--text-light);
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    /* Reviews Section */
     .reviews-section {
-      padding: 90px 5%;
-      background: var(--bg-dark);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 24px;
-      max-width: 1200px;
-      margin: 0 auto 50px auto;
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 0 5%;
+      text-align: center;
     }
 
     .review-card {
       background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.3s ease;
+      padding: 25px;
+      margin-top: 20px;
     }
 
-    .review-card:hover {
-      border-color: var(--accent-gold);
-    }
-
-    .review-stars {
-      color: var(--accent-gold);
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-
-    .review-text {
-      color: var(--text-light);
-      font-size: 0.98rem;
-      font-weight: 300;
-      margin-bottom: 16px;
-      line-height: 1.5;
-    }
-
-    .review-footer-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .review-author {
-      font-weight: 700;
-      color: var(--accent-gold);
-      font-size: 0.95rem;
-    }
-
-    .review-date {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* Form Container */
-    .review-form-container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 30px 20px;
-      text-align: center;
-    }
-
-    .review-form-container h3 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 6px;
-      color: var(--text-light);
-    }
-
-    .review-form-container p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 14px;
-      text-align: right;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: var(--bg-dark);
-      color: #fff;
-      font-family: var(--font-family);
-      font-size: 0.95rem;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--accent-gold);
-    }
-
-    textarea.form-control {
-      resize: vertical;
-      min-height: 90px;
-    }
-
-    .btn-gold {
-      background: linear-gradient(135deg, var(--accent-gold), #b89228);
-      color: #000;
-      font-weight: 800;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .btn-gold:hover {
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-    }
-
-    /* Footer */
-    footer {
-      padding: 50px 20px;
-      text-align: center;
-      background: var(--bg-dark);
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    footer .brand-name {
-      color: var(--accent-gold);
-      font-weight: 700;
-    }
+    .stars { color: var(--accent-gold); margin-bottom: 10px; }
 
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.5rem; }
-      .hero p { font-size: 1.05rem; }
-      .btn { width: 100%; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .reviews-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.3rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+      .service-card { padding: 20px 15px; }
+    }
+
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
     }
   </style>
-
-  <!-- Firebase SDK -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCznxxrD-Yc_h5zhE6iEFAo1dg2jc3mb00",
-      authDomain: "eyal-renovations.firebaseapp.com",
-      projectId: "eyal-renovations",
-      storageBucket: "eyal-renovations.firebasestorage.app",
-      messagingSenderId: "869611214788",
-      appId: "1:869611214788:web:84e76843ad2ea2ef80b691"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // טעינת תגובות בזמן אמת
-    const reviewsRef = collection(db, "reviews");
-    const q = query(reviewsRef, orderBy("timestamp", "desc"));
-
-    onSnapshot(q, (snapshot) => {
-      const reviewsGrid = document.getElementById('reviewsGrid');
-      reviewsGrid.innerHTML = '';
-
-      if (snapshot.empty) {
-        reviewsGrid.innerHTML = '<p style="text-align:center; color: var(--text-muted); grid-column: 1/-1;">עדיין אין תגובות. היו הראשונים להגיב!</p>';
-        return;
-      }
-
-      snapshot.forEach((doc) => {
-        const data = doc.data();
-        const card = document.createElement('div');
-        card.className = 'review-card';
-        card.innerHTML = `
-          <div>
-            <div class="review-stars">${data.stars || '★★★★★'}</div>
-            <div class="review-text">"${data.text}"</div>
-          </div>
-          <div class="review-footer-info">
-            <span class="review-author">${data.author}</span>
-            <span class="review-date">${data.dateStr || ''}</span>
-          </div>
-        `;
-        reviewsGrid.appendChild(card);
-      });
-    }, (error) => {
-      console.warn("Firestore error:", error);
-    });
-
-    // שליחת תגובה חדשה לענן
-    window.submitPublicReview = async function(e) {
-      e.preventDefault();
-      const submitBtn = document.getElementById('submitBtn');
-      const name = document.getElementById('reviewerName').value;
-      const stars = document.getElementById('reviewerStars').value;
-      const text = document.getElementById('reviewerText').value;
-
-      submitBtn.innerText = 'מפרסם תגובה...';
-      submitBtn.disabled = true;
-
-      try {
-        const today = new Date();
-        const dateStr = today.toLocaleDateString('he-IL');
-
-        await addDoc(collection(db, "reviews"), {
-          author: name,
-          stars: stars,
-          text: text,
-          dateStr: dateStr,
-          timestamp: serverTimestamp()
-        });
-
-        document.getElementById('reviewerName').value = '';
-        document.getElementById('reviewerText').value = '';
-        submitBtn.innerText = 'פרסום תגובה באתר';
-        submitBtn.disabled = false;
-        alert('התגובה שלך פורסמה בהצלחה ומופיעה עכשיו לכולם!');
-      } catch (err) {
-        console.error("Error adding review:", err);
-        submitBtn.innerText = 'פרסום תגובה באתר';
-        submitBtn.disabled = false;
-        alert('שגיאה בפרסום התגובה, אנא נסה שנית.');
-      }
-    };
-  </script>
-
-  <script>
-    const defaultImages = [
-      { url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", title: "שיפוץ ועיצוב וילה יוקרתית" },
-      { url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80", title: "גמר פנים וריצוף מודרני" },
-      { url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80", title: "תכנון וביצוע מטבח אדריכלי" },
-      { url: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80", title: "עבודות גבס ותאורה נסתרת" }
-    ];
-
-    async function loadGallery() {
-      const galleryGrid = document.getElementById('galleryGrid');
-      galleryGrid.innerHTML = ''; 
-
-      defaultImages.forEach(item => {
-        addCardToGallery(item.url, item.title);
-      });
-
-      for (let i = 1; i <= 20; i++) {
-        const imageName = `${i}.jpg`;
-        const exists = await checkImageExists(imageName);
-        if (exists) {
-          addCardToGallery(imageName, `פרויקט שבוצע על ידי אייל`);
-        }
-      }
-
-      const placeholderCard = document.createElement('div');
-      placeholderCard.className = 'gallery-card placeholder';
-      placeholderCard.innerHTML = `
-        <div class="placeholder-icon">+</div>
-        <div class="placeholder-text">פרויקט חדש בקרוב</div>
-        <div class="placeholder-subtext">אייל שיפוצים ובנייה</div>
-      `;
-      galleryGrid.appendChild(placeholderCard);
-    }
-
-    function addCardToGallery(url, title) {
-      const galleryGrid = document.getElementById('galleryGrid');
-      const card = document.createElement('div');
-      card.className = 'gallery-card';
-      card.innerHTML = `
-        <img src="${url}" alt="${title}" loading="lazy">
-        <div class="card-overlay">${title}</div>
-      `;
-      galleryGrid.appendChild(card);
-    }
-
-    function checkImageExists(url) {
-      return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
-        img.src = url;
-      });
-    }
-
-    window.addEventListener('DOMContentLoaded', loadGallery);
-  </script>
 </head>
 <body>
 
-  <!-- Header -->
   <header>
-    <div class="brand-container">
-      <img src="logo.png" alt="אייל - עבודות שיפוצים" class="brand-logo-img" onerror="this.style.display='none'; document.getElementById('textLogo').style.display='flex';">
-      
-      <div id="textLogo" class="brand-text-logo" style="display: none;">
-        <span>אייל</span>
-        <span class="brand-badge">שיפוצים ובנייה</span>
-      </div>
-    </div>
-
-    <a href="tel:0547540825" class="nav-btn-call">054-7540825</a>
+    <div class="logo">אייל שיפוצים</div>
+    <a href="https://wa.me/972547540825" class="btn-whatsapp-nav">ייעוץ בוואטסאפ</a>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-subtitle">מצוינות בשיפוצים ובנייה</div>
-    <h1>בונים את הבית<br><span>שתמיד חלמתם עליו</span></h1>
-    <p>אייל מספק פתרונות שיפוצי פנים, עבודות שלד מורכבות וניהול פרויקטים ברמה אדריכלית. דגש על רמת גימור מושלמת ועמידה בזמנים.</p>
-    
-    <div class="btn-group">
-      <a href="https://wa.me/972547540825" class="btn btn-whatsapp">שיחה בוואטסאפ</a>
+    <h1>איכות, מקצועיות וגימור ללא פשרות</h1>
+    <p>מומחה בשיפוצי יוקרה, עבודות גבס ותאורה, חדרי רחצה ומטבחים ברמה האדריכלית הגבוהה ביותר.</p>
+  </section>
+
+  <section class="services-section">
+    <h2 class="section-title">תחומי התמחות</h2>
+    <div class="services-grid">
+
+      <a href="gallery.html?cat=luxury" class="service-card">
+        <div class="service-icon">🏰</div>
+        <h3>שיפוצי יוקרה וווילות</h3>
+        <p>שיפוצי עומק, תכנון אדריכלי ושינוי מבני מקיף</p>
+      </a>
+
+      <a href="gallery.html?cat=gypsum" class="service-card">
+        <div class="service-icon">✨</div>
+        <h3>עבודות גבס ותאורה</h3>
+        <p>תקרות צפות, נישות מעוצבות ותאורה נסתרת</p>
+      </a>
+
+      <a href="gallery.html?cat=bath" class="service-card">
+        <div class="service-icon">🛁</div>
+        <h3>חדרי רחצה ושירותים</h3>
+        <p>איטום, ריצוף, כלים סניטריים ועיצוב מודרני</p>
+      </a>
+
+      <a href="gallery.html?cat=kitchen" class="service-card">
+        <div class="service-icon">🍳</div>
+        <h3>מטבחים וחללים מרכזיים</h3>
+        <p>חידוש מטבחים, איים מרכזיים וחיפוי קירות</p>
+      </a>
+
     </div>
   </section>
 
-  <!-- Gallery Section -->
-  <section class="gallery-section">
-    <div class="section-header">
-      <h2>הפרויקטים שלנו</h2>
-      <p>מבט אל חלק מהפרויקטים והעבודות שבוצעו ברמת הגימור הגבוהה ביותר</p>
-    </div>
-
-    <div class="gallery-grid" id="galleryGrid">
-      <!-- התמונות ייטענו לכאן -->
-    </div>
-  </section>
-
-  <!-- Reviews Section -->
   <section class="reviews-section">
-    <div class="section-header">
-      <h2>חוות דעת וביקורות</h2>
-      <p>מה אומרים הלקוחות על העבודות והשירות שלנו</p>
-    </div>
-
-    <!-- כרטיסיות הביקורות -->
-    <div class="reviews-grid" id="reviewsGrid">
-      <!-- התגובות ייטענו לכאן אוטומטית מכל הלקוחות -->
-    </div>
-
-    <!-- טופס הוספת תגובה ישירות באתר -->
-    <div class="review-form-container">
-      <h3>השארת חוות דעת</h3>
-      <p>נשמח לשמוע את חוות דעתך ולהציג אותה באתר שלנו לכל המבקרים!</p>
-      
-      <form onsubmit="submitPublicReview(event)">
-        <div class="form-group">
-          <label>שם מלא / עיר</label>
-          <input type="text" id="reviewerName" class="form-control" placeholder="למשל: ישראל ישראלי" required>
-        </div>
-
-        <div class="form-group">
-          <label>דירוג</label>
-          <select id="reviewerStars" class="form-control" style="color: var(--accent-gold); font-weight: 700;">
-            <option value="★★★★★">★★★★★ (5 כוכבים - מעולה!)</option>
-            <option value="★★★★☆">★★★★☆ (4 כוכבים - טוב מאוד)</option>
-            <option value="★★★☆☆">★★★☆☆ (3 כוכבים - בינוני)</option>
-            <option value="★★☆☆☆">★★☆☆☆ (2 כוכבים - טעון שיפור)</option>
-            <option value="★☆☆☆☆">★☆☆☆☆ (1 כוכב - לא מרוצה)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>התגובה שלך</label>
-          <textarea id="reviewerText" class="form-control" placeholder="כיתבו כאן משהו על העבודה והשירות..." required></textarea>
-        </div>
-
-        <button type="submit" id="submitBtn" class="btn-gold">
-          פרסום תגובה באתר
-        </button>
-      </form>
+    <h2 class="section-title">חוות דעת וביקורות</h2>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"אחלה אייל שבעולם, עושה את העבודה כמו שצריך!"</p>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© כל הזכויות שמורות ל<span class="brand-name">אייל - עבודות שיפוצים ובנייה</span></p>
-  </footer>
 
 </body>
 </html>
