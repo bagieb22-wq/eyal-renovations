@@ -54,10 +54,7 @@
       gap: 12px;
     }
 
-    .brand-logo-img {
-      height: 45px;
-      object-fit: contain;
-    }
+    .brand-logo-img { height: 45px; object-fit: contain; }
 
     .brand-text-logo {
       display: flex;
@@ -338,9 +335,7 @@
       transition: color 0.2s;
     }
 
-    .admin-login-link:hover {
-      color: var(--accent-gold);
-    }
+    .admin-login-link:hover { color: var(--accent-gold); }
   </style>
 
   <!-- Firebase SDK -->
@@ -424,9 +419,10 @@
       }
     };
 
-    // 3. העלאת תמונה מוסתרת ל-Firebase Storage
+    // 3. 🖼️ העלאת תמונה עם שם מותאם אישית ל-Firebase
     window.uploadImageToFirebase = async function() {
       const fileInput = document.getElementById('adminFileInput');
+      const customTitleInput = document.getElementById('adminImageTitle');
       const categorySelect = document.getElementById('adminCatSelect');
       const uploadStatus = document.getElementById('uploadStatus');
 
@@ -435,24 +431,33 @@
         return;
       }
 
+      const customTitle = customTitleInput.value.trim();
+      if (!customTitle) {
+        alert('אנא הזן שם לתמונה (לדוגמה: "שיפוץ סלון בראשון לציון")');
+        return;
+      }
+
       const file = fileInput.files[0];
       const category = categorySelect.value;
       const storageRef = ref(storage, `gallery/${category}_${Date.now()}_${file.name}`);
 
-      uploadStatus.innerText = 'מעלה תמונה לשרת הענן... ⏳';
+      uploadStatus.innerText = 'מעלה את התמונה לענן... ⏳';
 
       try {
         await uploadBytes(storageRef, file);
         const downloadURL = await getDownloadURL(storageRef);
 
+        // שמירת הקישור והשם המותאם ב-Firestore (זה הדיבי שמתחבר ישר לאתר!)
         await addDoc(collection(db, "gallery_images"), {
           url: downloadURL,
+          title: customTitle,
           category: category,
           timestamp: serverTimestamp()
         });
 
-        uploadStatus.innerText = 'התמונה הועלתה בהצלחה ל-Firebase! 🎉';
+        uploadStatus.innerText = `התמונה "${customTitle}" הועלתה בהצלחה ל-Firebase! 🎉`;
         fileInput.value = '';
+        customTitleInput.value = '';
       } catch (error) {
         console.error("Upload error:", error);
         uploadStatus.innerText = 'שגיאה בהעלאת התמונה. ודא הרשאות ב-Firebase Storage.';
@@ -460,7 +465,7 @@
     };
   </script>
 
-  <!-- 🔑 חשיפת כניסת מנהל -->
+  <!-- 🔑 סקריפט כניסת מנהל -->
   <script>
     function openAdminModal() {
       const pass = prompt("הזן סיסמת מנהל לפתיחת אזור העלאת התמונות:");
@@ -476,7 +481,6 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <div class="brand-container">
       <img src="logo.png" alt="אייל - עבודות שיפוצים" class="brand-logo-img" onerror="this.style.display='none'; document.getElementById('textLogo').style.display='flex';">
@@ -488,7 +492,6 @@
     <a href="tel:0547540825" class="nav-btn-call">054-7540825</a>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-subtitle">מצוינות בשיפוצים ובנייה</div>
     <h1>בונים את הבית<br><span>שתמיד חלמתם עליו</span></h1>
@@ -496,7 +499,6 @@
     <a href="https://wa.me/972547540825" class="btn-whatsapp">שיחה בוואטסאפ</a>
   </section>
 
-  <!-- תמונת הפרויקט הראשי -->
   <div class="featured-project-container">
     <div class="featured-project-card">
       <div class="featured-project-badge">פרויקט נבחר של אייל</div>
@@ -504,10 +506,15 @@
     </div>
   </div>
 
-  <!-- 🔒 תיבת העלאת תמונות מוסתרת (ADMIN ONLY) -->
+  <!-- 🔒 תיבת העלאת תמונות מוסתרת -->
   <div class="admin-upload-box" id="adminUploadBox">
-    <h3>🔒 אזור מנהל: העלאת תמונה ל-Firebase Storage</h3>
-    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">בחר תמונה מהמחשב/פלאפון ושייך אותה לקטגוריה:</p>
+    <h3>🔒 אזור מנהל: העלאת תמונה לגלריה</h3>
+    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">תנו שם לתמונה, בחרו קטגוריה והעלו ישר ל-Database:</p>
+
+    <div class="form-group">
+      <label>שם / תיאור התמונה</label>
+      <input type="text" id="adminImageTitle" class="form-control" placeholder="למשל: שיפוץ סלון יוקרתי ברמת גן" required>
+    </div>
 
     <div class="form-group">
       <label>בחירת קטגוריה</label>
@@ -520,18 +527,17 @@
     </div>
 
     <div class="form-group">
-      <label>קובץ תמונה</label>
+      <label>קובץ תמונה מהמכשיר</label>
       <input type="file" id="adminFileInput" accept="image/*" class="form-control">
     </div>
 
     <button type="button" onclick="uploadImageToFirebase()" class="btn-gold" style="margin-top: 10px;">
-      העלה תמונה ל-Firebase העולמי 🚀
+      העלה תמונה ל-Database 🚀
     </button>
 
     <div id="uploadStatus" style="margin-top: 15px; font-weight: 700; color: var(--accent-gold);"></div>
   </div>
 
-  <!-- Gallery Section: תמונות לחיצות -->
   <section class="gallery-section">
     <div class="section-header">
       <h2>הפרויקטים והתמחויות</h2>
@@ -540,7 +546,7 @@
 
     <div class="gallery-grid">
       <a href="gallery.html?cat=luxury" class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="שיפוצי יוקרה וווילות">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="שיפוצי יוקרה">
         <div class="card-overlay">
           <div class="card-title">שיפוצי יוקרה וווילות</div>
           <div class="card-sub">לחץ לצפייה בפרויקטים ➔</div>
@@ -548,7 +554,7 @@
       </a>
 
       <a href="gallery.html?cat=gypsum" class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="עבודות גבס ותאורה">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="עבודות גבס">
         <div class="card-overlay">
           <div class="card-title">עבודות גבס ותאורה נסתרת</div>
           <div class="card-sub">לחץ לצפייה בפרויקטים ➔</div>
@@ -556,7 +562,7 @@
       </a>
 
       <a href="gallery.html?cat=bath" class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="חדרי רחצה ושירותים">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="חדרי רחצה">
         <div class="card-overlay">
           <div class="card-title">חדרי רחצה ושירותים</div>
           <div class="card-sub">לחץ לצפייה בפרויקטים ➔</div>
@@ -564,7 +570,7 @@
       </a>
 
       <a href="gallery.html?cat=kitchen" class="gallery-card">
-        <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" alt="מטבחים וחללים מרכזיים">
+        <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" alt="מטבחים">
         <div class="card-overlay">
           <div class="card-title">מטבחים וחללים מרכזיים</div>
           <div class="card-sub">לחץ לצפייה בפרויקטים ➔</div>
@@ -573,7 +579,6 @@
     </div>
   </section>
 
-  <!-- Reviews Section -->
   <section class="reviews-section">
     <div class="section-header">
       <h2>חוות דעת וביקורות</h2>
@@ -611,7 +616,6 @@
     </div>
   </section>
 
-  <!-- Footer עם כניסת מנהל -->
   <footer>
     <p>© כל הזכויות שמורות ל<span style="color:var(--accent-gold)">אייל - עבודות שיפוצים ובנייה</span></p>
     <button type="button" class="admin-login-link" onclick="openAdminModal()">
